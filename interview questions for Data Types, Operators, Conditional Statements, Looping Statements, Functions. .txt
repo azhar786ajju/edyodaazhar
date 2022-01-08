@@ -1,0 +1,148 @@
+{Python Interview Questions on Data Types}
+
+1.What are Data Types?
+
+Ans>A data type is a set of values and a set of operations defined on data. 
+An implementation of a data type is an expression of data 
+and operations in terms of a specific programming language such as Java, C ++, or Python.
+
+2.Name four of the main data types in Python?
+
+Ans>Numbers, strings, lists, dictionaries, tuples, files
+
+3.Why are these data types known as Python’s core data types?
+
+Ans>They are known as the core data types because they are part of the Python language itself and are always available to create other objects, 
+you usually need to call functions in imported modules.
+
+4.What does immutable mean and what three types of Python core data types are considered immutable?
+
+Ans> An immutable data type is a type of object which cannot be modified after its creation.
+Numbers, strings, and tuples in Python fall into this category. Although you cannot modify an immutable object in place, 
+you can always create a new one by running an expression.
+
+5.What does mapping mean and what kind of data type is based on mapping?
+
+Ans> The term mapping refers to an object that maps keys to associated values. The Python dictionary is the only type of mapping in the base typeset. 
+Mappings do not maintain any left-to-right position order; they support access to stored data by key, as well as type-specific method calls.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+{Python Interview Questions on Operators}
+
+1.What is the output of the following code :
+  print 9//2
+
+Ans>  4
+
+2.Which function overloads the >> operator?
+(A) more()
+(B) gt()
+(C) ge()
+(D) None of the above
+
+Answer: (D)
+
+3.Which operator is overloaded by the or() function?
+(A) ||
+(B) |
+(C) //
+(D) /
+
+
+Answer: (B)
+
+4.What is the output of the following program :
+
+      i = 0
+      while i < 3:
+             print i
+             i++
+             print i+1
+
+(A) 0 2 1 3 2 4
+(B) 0 1 2 3 4 5
+(C) Error
+(D) 1 0 2 4 3 5
+
+
+Answer: (C)
+
+-----------------------------------------------------------------------------------
+{Python Interview Questions on conditional Statements}
+
+Question 1.
+What constitutes “True” in Python?
+
+Answer:
+A true expression is any expression that does not evaluate to 0, the empty list [ ], tuple ( ), dictionary { } or the objects None or False.
+
+Question 2:
+What are the three main conditional statements in Python?
+
+Answer:
+if, elif, and else
+
+Question 3:
+What are the comparison operators in Python?
+
+Answer:
+< Less than, > Greater than, <= Less than or equal to, >= Greater than or equal to, = Equal to, != not equal,
+ o alternative not equal. Note a single = is NOT a Python comparison operator, it is an assignment operator only.
+
+Question 4:
+Illustrate a basic if, elif, else structure.
+
+Answer:
+if <condition>:
+
+elif<another condition>:
+
+else:
+
+Question 5:
+In Python 2.5+, the equivalent of a tertiary operator has been added to the language. Provide an example of its use.
+
+Answer:
+myValue = ‘Positive’ if myNumber > 0 else ‘Negative or Zero’
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+{Python Interview Questions on Looping Statements}
+
+
+1. What keyword is used for looping?
+A) while
+B) for
+C) loop
+
+Answer: for
+
+2. What function can generate a list of numbers?
+A) for
+B) list
+C) range
+
+Answer: range
+
+3. Name the 2 keywords used for looping?
+A) while loop
+B) for loop
+C) for while
+
+Answer: for while
+
+4. What module is used for generating random values?
+A) math
+B) random
+C) randrange
+
+Answer: random
+
+5. What keyword is used to skip back to the beginning of a loop?
+A) break
+B) while
+C) continue
+
+Answer: continue
+
+----------------------------------------------------------------------------------------------------------------------
