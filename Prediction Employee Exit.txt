@@ -1,0 +1,369 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Dataset link : 
+# https://raw.githubusercontent.com/tranghth-lux/data-science-complete-tutorial/master/Data/HR_comma_sep.csv.txt
+
+# In[1]:
+
+
+# IMPORTING IMPORTANT LIBRARIES
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# In[2]:
+
+
+# Importing the Dataset
+
+dataset = pd.read_csv(r'https://raw.githubusercontent.com/tranghth-lux/data-science-complete-tutorial/master/Data/HR_comma_sep.csv.txt')
+
+
+# In[3]:
+
+
+# Checking starting 5 rows data
+
+dataset.head()
+
+
+# In[29]:
+
+
+# Getting shape of the dataset
+
+dataset.shape
+
+
+# In[5]:
+
+
+# Checking column names
+
+dataset.columns
+
+
+# In[6]:
+
+
+dataset.info()
+
+
+# In[7]:
+
+
+dataset.describe()
+
+
+# In[8]:
+
+
+# Conerting columns names into list
+
+columns = dataset.columns.tolist()
+columns
+
+
+# In[9]:
+
+
+# Import seaborn and matplotlib for data visualization.
+import seaborn as sns
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+import itertools
+
+
+# In[10]:
+
+
+categorical  = ['number_project','time_spend_company','Work_accident','left', 'promotion_last_5years','sales','salary']
+
+
+# In[15]:
+
+
+# For changing categorical variable into int
+from sklearn.preprocessing import LabelEncoder 
+le=LabelEncoder()
+dataset['salary'] = le.fit_transform(dataset['salary'])
+dataset['sales'] = le.fit_transform(dataset['sales'])
+
+
+# In[17]:
+
+
+# Seperating x and y variables
+x = dataset[['satisfaction_level', 'last_evaluation', 'number_project',
+       'average_montly_hours', 'time_spend_company', 'Work_accident',
+        'promotion_last_5years', 'sales', 'salary']]
+y = dataset['left']
+
+
+# In[18]:
+
+
+# Printing the shape
+print(x.shape)
+print(y.shape)
+
+
+# In[19]:
+
+
+# Importing important library
+from sklearn.model_selection import train_test_split
+
+# Spliting the data into the train test split
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.2, random_state = 5)
+
+
+# In[20]:
+
+
+# Importing important library
+from sklearn.linear_model import LogisticRegression
+
+# Logistic Regression Model
+model = LogisticRegression()
+model.fit(x_train, y_train)
+
+
+# In[21]:
+
+
+# Predicting from the model
+y_pred = model.predict(x_test)
+
+
+# In[22]:
+
+
+# Confusion Matrix
+
+cm = pd.crosstab(y_test,y_pred, rownames = ['Actual'], colnames = ['Predicted'])
+sns.heatmap(cm, annot = True)
+
+
+# In[24]:
+
+
+from sklearn import metrics
+
+# Accuracy
+print('Accuracy :', metrics.accuracy_score(y_test, y_pred))
+
+
+# In[26]:
+
+
+corr = dataset.corr()
+
+
+# In[27]:
+
+
+plt.figure(figsize=(12,10))
+sns.heatmap(corr,annot=True,cbar=True)
+plt.xticks(rotation=90)
+
+
+# In[28]:
+
+
+from sklearn import metrics
+
+# Accuracy
+print('Accuracy :', metrics.accuracy_score(y_test, y_pred))
+
+
+# # KNN
+
+# In[30]:
+
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score, train_test_split
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[31]:
+
+
+# Creating feature and target arrays
+
+x = dataset[['satisfaction_level', 'last_evaluation', 'number_project',
+       'average_montly_hours', 'time_spend_company', 'Work_accident',
+        'promotion_last_5years', 'sales', 'salary']]
+y = dataset['left']
+
+# Printing data shape
+print('x matrix dimensionality: ',x.shape)
+print('y matrix dimensionality: ',y.shape)
+
+
+# In[32]:
+
+
+# spliting into training data and testing data
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.15, random_state = 7)
+
+
+# In[33]:
+
+
+# Instantaneous Model
+knn = KNeighborsClassifier(n_neighbors = 4)
+
+# # Fitting the model with training data
+knn.fit(x_train, y_train)
+
+#Predicting from the model
+y_pred = knn.predict(x_test)
+print(y_pred)
+
+
+# In[34]:
+
+
+# Making a confusion Matrix
+
+cm = confusion_matrix(y_test, y_pred) # [ y_test - is actual,  y_pred - is predicted ]
+cm
+
+
+# In[35]:
+
+
+# Searching optimal value of k for KNN Algorithm
+
+# List of k_range
+k_range = range(1, 30)
+
+# list of scores
+k_scores = []
+
+# looping through values of k
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors = k)
+    scores = cross_val_score(knn, x, y, cv = 10, scoring = 'accuracy') 
+    # cv: cross validation  it creates 10 subsets as per we givebn cv = 10 it creats x1,y1 to x10,y10
+    k_scores.append(scores.mean())
+print(k_scores)
+
+
+# In[36]:
+
+
+# Visualization
+plt.plot(k_range, k_scores)
+plt.xlabel('value of k')
+plt.ylabel('cross-validated Accuracy')
+plt.show()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
